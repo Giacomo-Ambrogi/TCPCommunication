@@ -9,21 +9,21 @@ public class MainClient {
 
         try{
             Socket socket = new Socket("localhost", 3000);
+            System.out.println("CLIENT: Il CLIENT si è connesso al SERVER");
 
-            InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream();
+            PrintWriter pw = new PrintWriter(outputStream);
+            pw.print("Ciao SERVER!");
+            pw.flush();
+            System.out.println("CLIENT: Il CLIENT ha inviato un messaggio");
 
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
             dataOutputStream.writeUTF("Client request");
 
-            DataInputStream dataInputStream = new DataInputStream(inputStream);
-            String serverResponse = dataInputStream.readUTF();
-
-            inputStream.close();
             outputStream.close();
             socket.close();
         } catch(IOException e){
-            System.err.println("----- CLIENT: Chiusura comunicazione! -----");
+            System.err.println("----- CLIENT: Errore nella comunicazione con il SERVER! -----");
         }
 
         System.out.println("----- CLIENT: Fine esecuzione!!! -----");
