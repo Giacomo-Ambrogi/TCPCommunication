@@ -20,6 +20,13 @@ public class MainClient {
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
             dataOutputStream.writeUTF("Client request");
 
+            String messaggio = "";
+
+            while(true) {
+                System.out.println("Scrivi un messaggio per il SERVER: ");
+
+            }
+
             outputStream.close();
             socket.close();
         } catch(IOException e){

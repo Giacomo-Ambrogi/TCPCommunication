@@ -21,6 +21,11 @@ public class MainServer {
             String messaggio = br.readLine();
             System.out.println("SERVER: Il CLIENT " + clientSocket + "ha scritto il messaggio --> " + messaggio);
 
+            while(!messaggio.equalsIgnoreCase("esci")) {
+                System.out.println("SERVER: Il CLIENT " + clientSocket + "ha scritto il messaggio --> " + messaggio);
+                messaggio = br.readLine();
+            }
+
             inputStream.close();
             clientSocket.close(); //chiusura data socket
         } catch (IOException e) {
