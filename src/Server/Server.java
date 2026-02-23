@@ -31,8 +31,7 @@ public class Server {
             System.out.println("SERVER: Avviato sulla porta " + porta);
             return true;
         } catch (IOException e) {
-            System.err.println("SERVER ERRORE - Impossibile avviare sulla porta " + porta + ": " + e.getMessage());
-            return false;
+            System.err.println("SERVER ERRORE - Impossibile avviare sulla porta " + porta + ": " + e.getStackTrace());           return false;
         }
     }
 
@@ -53,7 +52,7 @@ public class Server {
             writer = new PrintWriter(clientSocket.getOutputStream(), true); // autoFlush = true: invia subito senza flush() manuale
             return clientSocket;
         } catch (IOException e) {
-            System.err.println("SERVER ERRORE - Errore durante l'attesa del client: " + e.getMessage());
+            System.err.println("SERVER ERRORE - Errore durante l'attesa del client: " + e.getStackTrace());
             return null;
         }
     }
@@ -74,7 +73,7 @@ public class Server {
             System.out.println("SERVER: Ricevuto dal client -> \"" + messaggio + "\"");
             return messaggio;
         } catch (IOException e) {
-            System.err.println("SERVER ERRORE - Errore durante la lettura: " + e.getMessage());
+            System.err.println("SERVER ERRORE - Errore durante la lettura: " + e.getStackTrace());
             return null;
         }
     }
@@ -116,7 +115,7 @@ public class Server {
             }
             System.out.println("SERVER: Comunicazione con il client chiusa.");
         } catch (IOException e) {
-            System.err.println("SERVER ERRORE - Errore durante la chiusura: " + e.getMessage());
+            System.err.println("SERVER ERRORE - Errore durante la chiusura: " + e.getStackTrace());
         }
     }
 
@@ -135,7 +134,7 @@ public class Server {
             }
             System.out.println("SERVER: Servizio terminato.");
         } catch (IOException e) {
-            System.err.println("SERVER ERRORE - Errore durante la terminazione: " + e.getMessage());
+            System.err.println("SERVER ERRORE - Errore durante la terminazione: " + e.getStackTrace());
         }
     }
 }

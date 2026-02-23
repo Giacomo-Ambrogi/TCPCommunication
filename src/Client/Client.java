@@ -39,7 +39,7 @@ public class Client {
             writer = new PrintWriter(socket.getOutputStream(), true); // autoFlush = true
             return 0;
         } catch (IOException e) {
-            System.err.println("CLIENT ERRORE - Impossibile connettersi: " + e.getMessage());
+            System.err.println("CLIENT ERRORE - Impossibile connettersi: " + e.getStackTrace());
             return -1;
         }
     }
@@ -75,7 +75,7 @@ public class Client {
             System.out.println("CLIENT [" + nome + "]: Ricevuto dal server -> \"" + risposta + "\"");
             return risposta;
         } catch (IOException e) {
-            System.err.println("CLIENT ERRORE - Errore durante la lettura: " + e.getMessage());
+            System.err.println("CLIENT ERRORE - Errore durante la lettura: " + e.getStackTrace());
             return null;
         }
     }
@@ -102,7 +102,7 @@ public class Client {
             }
             System.out.println("CLIENT [" + nome + "]: Connessione chiusa.");
         } catch (IOException e) {
-            System.err.println("CLIENT ERRORE - Errore durante la chiusura: " + e.getMessage());
+            System.err.println("CLIENT ERRORE - Errore durante la chiusura: " + e.getStackTrace());
         }
     }
 }
