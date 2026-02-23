@@ -13,7 +13,7 @@ public class MainClient {
 
             OutputStream outputStream = socket.getOutputStream();
             PrintWriter pw = new PrintWriter(outputStream);
-            pw.print("Ciao SERVER!");
+            pw.print("Ciao SERVER!\n");
             pw.flush();
             System.out.println("CLIENT: Il CLIENT ha inviato un messaggio");
 
