@@ -21,14 +21,28 @@ public class MainClient {
             dataOutputStream.writeUTF("Client request");
 
             String messaggio = "";
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
             while(true) {
                 System.out.println("Scrivi un messaggio per il SERVER: ");
+                messaggio = tastiera.readLine();
 
+                out.println(messaggio);
+
+                if(messaggio.equalsIgnoreCase("esci")) {
+                    break;
+                }
+
+                String risposta = br.readLine();
+                System.out.println("Risposta SERVER: " + risposta);
             }
 
             outputStream.close();
             socket.close();
+            br.close();
+            out.close();
         } catch(IOException e){
             System.err.println("----- CLIENT: Errore nella comunicazione con il SERVER! -----");
         }

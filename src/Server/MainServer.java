@@ -3,6 +3,7 @@ package Server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.Buffer;
 
 public class MainServer {
     public static void main(String[] args) {
@@ -17,17 +18,31 @@ public class MainServer {
 
             //lettura
             InputStream inputStream = clientSocket.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             String messaggio = br.readLine();
             System.out.println("SERVER: Il CLIENT " + clientSocket + "ha scritto il messaggio --> " + messaggio);
 
-            while(!messaggio.equalsIgnoreCase("esci")) {
-                System.out.println("SERVER: Il CLIENT " + clientSocket + "ha scritto il messaggio --> " + messaggio);
+            BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            while(true) {
                 messaggio = br.readLine();
+
+                if (!messaggio.equalsIgnoreCase("esci")) {
+                    break;
+                }
+
+                System.out.println("Messaggio CLIENT: " + messaggio);
+                System.out.println("Risposta SERVER: " );
+                String risposta = tastiera.readLine();
+
+                out.println(risposta);
             }
 
             inputStream.close();
             clientSocket.close(); //chiusura data socket
+            br.close();
+            out.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
