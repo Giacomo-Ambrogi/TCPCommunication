@@ -7,7 +7,10 @@ public class MainClient {
     public static void main(String[] args) {
         System.out.println("----- CLIENT: Avvio del client!!! -----");
 
-        try{
+        Client client = new Client("Giacomo", "rosso");
+        client.connetti("localhost", 3000);
+        client.scrivi();
+        /*try{
             Socket socket = new Socket("localhost", 3000);
             System.out.println("CLIENT: Il CLIENT si è connesso al SERVER");
 
@@ -48,7 +51,7 @@ public class MainClient {
             out.close();
         } catch(IOException e){
             System.err.println("----- CLIENT: Errore nella comunicazione con il SERVER! -----");
-        }
+        }*/
 
         System.out.println("----- CLIENT: Fine esecuzione!!! -----");
     }
