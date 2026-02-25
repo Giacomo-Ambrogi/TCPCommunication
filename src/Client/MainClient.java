@@ -12,23 +12,40 @@ public class MainClient {
             System.out.println("CLIENT: Il CLIENT si è connesso al SERVER");
 
             OutputStream outputStream = socket.getOutputStream();
-            PrintWriter pw = new PrintWriter(outputStream);
-            pw.print("Ciao SERVER!\n");
-            pw.flush();
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.print("Ciao SERVER!\n");
+            out.flush();
             System.out.println("CLIENT: Il CLIENT ha inviato un messaggio");
 
-            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-            dataOutputStream.writeUTF("Client request");
+            //DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+            //dataOutputStream.writeUTF("Client request");
 
             String messaggio = "";
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
 
             while(true) {
                 System.out.println("Scrivi un messaggio per il SERVER: ");
+                messaggio = tastiera.readLine();
 
+                out.println(messaggio);
+
+                if(messaggio.equalsIgnoreCase("esci")) {
+                    break;
+                }
+
+                String rispostaServer = br.readLine();
+                System.out.println("Risposta SERVER: " + rispostaServer);
+
+                if (rispostaServer == null || rispostaServer.equalsIgnoreCase("esci")) {
+                    break;
+                }
             }
 
             outputStream.close();
             socket.close();
+            br.close();
+            out.close();
         } catch(IOException e){
             System.err.println("----- CLIENT: Errore nella comunicazione con il SERVER! -----");
         }
