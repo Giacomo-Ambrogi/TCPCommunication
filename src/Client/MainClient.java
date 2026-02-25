@@ -34,8 +34,12 @@ public class MainClient {
                     break;
                 }
 
-                String risposta = br.readLine();
-                System.out.println("Risposta SERVER: " + risposta);
+                String rispostaServer = br.readLine();
+                System.out.println("Risposta SERVER: " + rispostaServer);
+
+                if (rispostaServer == null || rispostaServer.equalsIgnoreCase("esci")) {
+                    break;
+                }
             }
 
             outputStream.close();

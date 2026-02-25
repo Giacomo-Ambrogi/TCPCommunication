@@ -38,9 +38,9 @@ public class MainServer {
 
                 if (risposta.equalsIgnoreCase("esci")) {
                     break;
-                } else {
-                    out.println(risposta);
                 }
+
+                out.println(risposta);
             }
 
             inputStream.close();
