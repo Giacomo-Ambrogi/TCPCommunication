@@ -28,7 +28,7 @@ public class MainServer {
             while(true) {
                 messaggio = br.readLine();
 
-                if (!messaggio.equalsIgnoreCase("esci")) {
+                if (messaggio == null || messaggio.equalsIgnoreCase("esci")) {
                     break;
                 }
 
@@ -36,7 +36,11 @@ public class MainServer {
                 System.out.println("Risposta SERVER: " );
                 String risposta = tastiera.readLine();
 
-                out.println(risposta);
+                if (risposta.equalsIgnoreCase("esci")) {
+                    break;
+                } else {
+                    out.println(risposta);
+                }
             }
 
             inputStream.close();

@@ -12,18 +12,17 @@ public class MainClient {
             System.out.println("CLIENT: Il CLIENT si è connesso al SERVER");
 
             OutputStream outputStream = socket.getOutputStream();
-            PrintWriter pw = new PrintWriter(outputStream);
-            pw.print("Ciao SERVER!\n");
-            pw.flush();
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.print("Ciao SERVER!\n");
+            out.flush();
             System.out.println("CLIENT: Il CLIENT ha inviato un messaggio");
 
-            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-            dataOutputStream.writeUTF("Client request");
+            //DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+            //dataOutputStream.writeUTF("Client request");
 
             String messaggio = "";
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
             while(true) {
                 System.out.println("Scrivi un messaggio per il SERVER: ");
