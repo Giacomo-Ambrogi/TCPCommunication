@@ -42,6 +42,7 @@ public class Server {
             InputStream inputStream = clientSocket.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             String messaggio = br.readLine();
+
             System.out.println("SERVER: Il CLIENT " + clientSocket + "ha scritto il messaggio --> " + messaggio);
         } catch (IOException e) {
             System.err.println("Errore di lettura (lato Server): " + e.getStackTrace());
