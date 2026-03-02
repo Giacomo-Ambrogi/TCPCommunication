@@ -21,6 +21,8 @@ public class MainServer {
 
         server.chiudi();
 
+        server.termina();
+
         System.out.println("----- SERVER: Fine esecuzione!!! -----");
     }
 }

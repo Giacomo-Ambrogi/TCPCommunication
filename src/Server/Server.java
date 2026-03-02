@@ -51,9 +51,7 @@ public class Server {
 
     public void chiudi() {
         try {
-            if (serverSocket != null) {
-                serverSocket.close();
-            } else if (clientSocket != null) {
+            if (clientSocket != null) {
                 clientSocket.close();
             }
         } catch (IOException e) {
@@ -62,6 +60,12 @@ public class Server {
     }
 
     public void termina() {
-
+        try {
+            if (serverSocket != null) {
+                serverSocket.close();
+            }
+        } catch (IOException e) {
+            System.err.println("Errore chiusura server (lato Server): " + e.getStackTrace());
+        }
     }
 }
