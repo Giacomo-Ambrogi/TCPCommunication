@@ -1,9 +1,6 @@
 package Server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -27,10 +24,14 @@ public class Server {
     }
 
     public void scrivi() {
-        BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
         try {
+            BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+
             System.out.println("Messaggio SERVER: " );
             String risposta = tastiera.readLine();
+
+            out.println(risposta);
         } catch (IOException e) {
             System.err.println("Errore di scrittura: " + e.getStackTrace());
         }

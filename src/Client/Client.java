@@ -32,10 +32,12 @@ public class Client {
 
     public void scrivi() {
         try {
-            String messaggio = "";
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Scrivi un messaggio per il SERVER: ");
-            messaggio = tastiera.readLine();
+            String messaggio = tastiera.readLine();
+
+            out.println(messaggio);
 
             System.out.println("CLIENT: Il CLIENT ha inviato un messaggio");
         } catch (IOException e) {
