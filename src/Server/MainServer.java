@@ -14,6 +14,7 @@ public class MainServer {
         System.out.println("SERVER: In attesa di richieste dei CLIENT!");
         server.attendi();
         System.out.println("SERVER: Il CLIENT si è connesso!");
+
         server.leggi();
 
         server.scrivi();

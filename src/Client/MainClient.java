@@ -10,6 +10,7 @@ public class MainClient {
         Client client = new Client("Giacomo", "rosso");
 
         client.connetti("localhost", 3000);
+
         client.scrivi();
 
         client.leggi();
