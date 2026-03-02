@@ -17,6 +17,7 @@ public class MainServer {
         server.leggi();
 
         server.scrivi();
+
         /*try {
             //comunicazione
             ServerSocket serverSocket = new ServerSocket(3000);
