@@ -9,7 +9,15 @@ public class MainServer {
     public static void main(String[] args) {
         System.out.println("----- SERVER: Inizio esecuzione!!! -----");
 
-        try {
+        Server server = new Server(3000);
+
+        System.out.println("SERVER: In attesa di richieste dei CLIENT!");
+        server.attendi();
+        System.out.println("SERVER: Il CLIENT si è connesso!");
+        server.leggi();
+
+        server.scrivi();
+        /*try {
             //comunicazione
             ServerSocket serverSocket = new ServerSocket(3000);
             System.out.println("SERVER: In attesa di richieste dei CLIENT!");
@@ -49,7 +57,7 @@ public class MainServer {
             out.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
         System.out.println("----- SERVER: Fine esecuzione!!! -----");
     }

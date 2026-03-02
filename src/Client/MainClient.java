@@ -8,8 +8,11 @@ public class MainClient {
         System.out.println("----- CLIENT: Avvio del client!!! -----");
 
         Client client = new Client("Giacomo", "rosso");
+
         client.connetti("localhost", 3000);
         client.scrivi();
+
+        client.leggi();
         /*try{
             Socket socket = new Socket("localhost", 3000);
             System.out.println("CLIENT: Il CLIENT si è connesso al SERVER");
