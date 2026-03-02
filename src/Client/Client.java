@@ -56,6 +56,12 @@ public class Client {
     }
 
     public void chiudi() {
-
+        try {
+            if (socket != null) {
+                socket.close();
+            }
+        } catch (IOException e) {
+            System.err.println("Errore di chiusura (lato Client): " + e.getStackTrace());
+        }
     }
 }

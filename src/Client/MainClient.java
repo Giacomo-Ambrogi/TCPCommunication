@@ -14,6 +14,8 @@ public class MainClient {
 
         client.leggi();
 
+        client.chiudi();
+
         /*try{
             Socket socket = new Socket("localhost", 3000);
             System.out.println("CLIENT: Il CLIENT si è connesso al SERVER");

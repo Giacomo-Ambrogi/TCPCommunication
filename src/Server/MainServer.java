@@ -18,6 +18,8 @@ public class MainServer {
 
         server.scrivi();
 
+        server.chiudi();
+
         /*try {
             //comunicazione
             ServerSocket serverSocket = new ServerSocket(3000);

@@ -50,7 +50,15 @@ public class Server {
     }
 
     public void chiudi() {
-
+        try {
+            if (serverSocket != null) {
+                serverSocket.close();
+            } else if (clientSocket != null) {
+                clientSocket.close();
+            }
+        } catch (IOException e) {
+            System.err.println("Errore di chiusura (lato Server): " + e.getStackTrace());
+        }
     }
 
     public void termina() {
