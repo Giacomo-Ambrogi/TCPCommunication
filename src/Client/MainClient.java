@@ -7,31 +7,15 @@ public class MainClient {
     public static void main(String[] args) {
         System.out.println("----- CLIENT: Avvio del client!!! -----");
 
-        try{
-            Socket socket = new Socket("localhost", 3000);
-            System.out.println("CLIENT: Il CLIENT si è connesso al SERVER");
+        Client client = new Client("Giacomo", "rosso");
 
-            OutputStream outputStream = socket.getOutputStream();
-            PrintWriter pw = new PrintWriter(outputStream);
-            pw.print("Ciao SERVER!\n");
-            pw.flush();
-            System.out.println("CLIENT: Il CLIENT ha inviato un messaggio");
+        client.connetti("localhost", 3000);
 
-            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-            dataOutputStream.writeUTF("Client request");
+        client.scrivi();
 
-            String messaggio = "";
+        client.leggi();
 
-            while(true) {
-                System.out.println("Scrivi un messaggio per il SERVER: ");
-
-            }
-
-            outputStream.close();
-            socket.close();
-        } catch(IOException e){
-            System.err.println("----- CLIENT: Errore nella comunicazione con il SERVER! -----");
-        }
+        client.chiudi();
 
         System.out.println("----- CLIENT: Fine esecuzione!!! -----");
     }

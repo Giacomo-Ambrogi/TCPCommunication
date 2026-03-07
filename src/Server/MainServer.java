@@ -3,34 +3,25 @@ package Server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.Buffer;
 
 public class MainServer {
     public static void main(String[] args) {
         System.out.println("----- SERVER: Inizio esecuzione!!! -----");
 
-        try {
-            //comunicazione
-            ServerSocket serverSocket = new ServerSocket(3000);
-            System.out.println("SERVER: In attesa di richieste dei CLIENT!");
-            Socket clientSocket = serverSocket.accept();
-            System.out.println("SERVER: Il CLIENT si è connesso!");
+        Server server = new Server(3000);
 
-            //lettura
-            InputStream inputStream = clientSocket.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-            String messaggio = br.readLine();
-            System.out.println("SERVER: Il CLIENT " + clientSocket + "ha scritto il messaggio --> " + messaggio);
+        System.out.println("SERVER: In attesa di richieste dei CLIENT!");
+        server.attendi();
+        System.out.println("SERVER: Il CLIENT si è connesso!");
 
-            while(!messaggio.equalsIgnoreCase("esci")) {
-                System.out.println("SERVER: Il CLIENT " + clientSocket + "ha scritto il messaggio --> " + messaggio);
-                messaggio = br.readLine();
-            }
+        server.leggi();
 
-            inputStream.close();
-            clientSocket.close(); //chiusura data socket
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        server.scrivi();
+
+        server.chiudi();
+
+        server.termina();
 
         System.out.println("----- SERVER: Fine esecuzione!!! -----");
     }
